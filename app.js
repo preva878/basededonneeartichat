@@ -25,7 +25,7 @@ const getData = (req) => {
         })
     })
 }
-db.sequelize.sync({force:true})
+db.sequelize.sync()
 .then(()=>{
 http.createServer((req, res) => {
     const currentUrl = url.parse(req.url, true)
