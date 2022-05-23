@@ -1,7 +1,7 @@
 const db = require ("../models/db")
 
 const familleAccueilController = {
-    getAllEquipements(){
+    getAllFamilleAccueil(){
         db.FamilleAccueil.findAll()
         .then((result)=>{
             res.write(JSON.stringify(result.map(

@@ -2,7 +2,7 @@ const db = require ("../models/db")
 
 const sponsorController = {
     getAllSponsors(){
-        return db.Sponsor.findAll()
+     db.Sponsor.findAll()
     },
 }
 
