@@ -87,7 +87,10 @@ const AnimalInController = {
             res.write(JSON.stringify({message:`animal ${id} effacer`}))
             res.end()
         })
-        
+        .catch(()=>{
+            res.write(JSON.stringify({message:"erreur dans le delete"}))
+            res.end()
+        })
     },
    
 

@@ -1,4 +1,4 @@
-const res = require("express/lib/response")
+
 const db = require ("../models/db")
 
 const equipementController = {
@@ -25,7 +25,7 @@ const equipementController = {
             Etats:Etats,
         })
         .then(()=>{
-            res.write(JSON.stringify({message:`equipement ${Nom} ajouter `}))
+            res.write(JSON.stringify({message:`equipement ${Nom} de types: ${Types} ajouter `}))
             res.end()
         })
         .catch
@@ -34,7 +34,7 @@ const equipementController = {
             res.end()
         })
     },
-    deleteEquipement(){
+    deleteEquipement(res,id){
         db.Equipement.destroy({
             where:{
                 id:id
@@ -71,6 +71,19 @@ const equipementController = {
             res.end()
         })
 
+        },
+        getAllEquipementsbyname(res,Nom){
+            db.Equipement.findAll({where:{Nom:Nom}})
+            .then((result)=>{
+                res.write(JSON.stringify(result.map(
+                    elem => elem.toJSON()
+                )))
+                res.end()
+            })
+            .catch(()=>{
+                res.write(JSON.stringify({message:"erreur dans getequipement"}))
+                res.end()
+            })
         },
     
 }

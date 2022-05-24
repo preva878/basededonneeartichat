@@ -10,7 +10,7 @@ const AnimalOutController = require("./controllers/animalOutController")
 const AdoptantController = require ("./controllers/adoptantController")
 const EquipementController= require ("./controllers/equipementController")
 const FamilleAccueilController = require ("./controllers/familleAccueilController")
-
+const SponsorController = require ("./controllers/sponsorController")
 
 
 
@@ -161,12 +161,51 @@ if( path === "/familleaccueilbyartichats" && req.method === "GET"){
 /*                  Equipements                         */
 //***************************************************** */
 
-
+if (path === "/equipements" && req.method==="GET"){
+    EquipementController.getAllEquipements(res)
+}
+if (path === "/equipementsinsert" && req.method ==="POST"){
+    getData(req)
+    .then((data)=>{
+        EquipementController.insertEquipement(res,data.Nom,data.Types,
+            data.Quantite,data.DateEntree,data.DatePeremption,data.Etats)
+    })
+}
+if (path ==="/equipementdelete" && req.method === "DELETE"){
+    EquipementController.deleteEquipement(res,query.id)
+}
+if (path === "/equipementbyetats" && req.method === "GET"){
+    EquipementController.getEquipementbyEtats(res,query.Etats)
+}
+if (path ==="/equipementbynom" && req.method === "GET"){
+    EquipementController.getEquipementByNom(res,query.Nom)
+}
+if(path === "/equipemenall" && req.method === "GET"){
+    EquipementController.getAllEquipementsbyname(res,query.Nom)
+}
 
 //***************************************************** */
 /*                  Sponsors                            */
 //***************************************************** */
-
+if (path === "/sponsor" && req.method==="GET"){
+    SponsorController.getAllSponsors(res)
+}
+if (path =="/sponsorinsert" && req.method === "POST"){
+    getData(req)
+    .then((data)=>{
+        SponsorController.insertSponsors(res,data.Nom,data.Materiel,data.DateEntree,data.Quantite,data.Types,
+            data.Adresse,data.Types,data.Cp,data.Ville)
+    })
+}
+if (path === "/sponsordelete" && req.method === "DELETE"){
+    SponsorController.deleteSponsor(res,query.id)
+}
+if(path === "/sponsorbyname" && req.method === "GET"){
+    SponsorController.getSponsorByNom(res,query.Nom)
+}
+if(path === "/sponsorbycp" && req.method === "GET"){
+    SponsorController.getSponsorByCp(res,query.Cp)
+}
 
 
 //***************************************************** */
