@@ -2,11 +2,11 @@
 const db = require ("../models/db")
 
 const familleAccueilController = {
-    getAllFamilleAccueil(){
+    getAllFamilleAccueil(res){
         db.FamilleAccueil.findAll()
         .then((result)=>{
             res.write(JSON.stringify(result.map(
-                elem=> elem.toJSON()
+                elem => elem.toJSON()
             )))
             res.end()
         })
@@ -15,7 +15,8 @@ const familleAccueilController = {
             res.end()
         })
     },
-    insertFamilleAccueil(){
+
+    insertFamilleAccueil(res,Nom,Adresse,Cp,Ville,EquipementsFourni,Artichats,Notes){
         db.FamilleAccueil.create({
             Nom:Nom,
             Adresse:Adresse,
@@ -29,7 +30,8 @@ const familleAccueilController = {
             res.write(JSON.stringify({message:`famille d'accueil ${Nom} ajouter a l'equipe`}))
             res.end()
         })
-        .catch(()=>{
+        .catch
+        (()=>{
             res.write(JSON.stringify({message:"erreur dans l insertion de famille accueil"}))
             res.end()
         })

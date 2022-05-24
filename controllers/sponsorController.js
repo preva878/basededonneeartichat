@@ -17,7 +17,7 @@ const sponsorController = {
         
      },
    
-    insertSponsors(){
+    insertSponsors(res,Nom,Materiel,DateEntree,Quantite,Types,Adresse,Cp,Ville){
         db.Sponsor.create({
             Nom:Nom,
             Materiel:Materiel,
@@ -29,7 +29,7 @@ const sponsorController = {
             Ville:Ville,
         })
         .then(()=>{
-            removeEventListener.write(JSON.stringify({message:`nouveau sponsor : ${Nom} inserer`}))
+            res.write(JSON.stringify({message:`nouveau sponsor : ${Nom} inserer`}))
             res.end()
         })
         .catch

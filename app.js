@@ -9,6 +9,7 @@ const AnimalOutController = require("./controllers/animalOutController")
 
 const AdoptantController = require ("./controllers/adoptantController")
 const EquipementController= require ("./controllers/equipementController")
+const FamilleAccueilController = require ("./controllers/familleAccueilController")
 
 
 
@@ -45,7 +46,12 @@ http.createServer((req, res) => {
         "Content-Type": "application/json"
 
 })
-//animalIN
+
+//***************************************************** */
+/*                  AnimalIN                            */
+//***************************************************** */ 
+
+
 if(path==="/animalin" && req.method==="GET"){
     AnimalInController.getallAnimalIns(res)
 }
@@ -69,8 +75,18 @@ if(path==="/animalinnom" && req.method==="GET"){
 if(path==="/animalinfa" && req.method==="GET"){
     AnimalInController.getAnimalInbyFa(res,query.FamilleAccueil)
 }
+if(path==="/animalinupdate" && req.method==="PUT"){
+    getData(req)
+    .then((data)=>{
+        AnimalInController.updateAnimal(res,data.id)
+    })    
+}
 
-//animalOUT
+
+//***************************************************** */
+/*                  Animalout                            */
+//***************************************************** */
+
 if(path==="/animalout" && req.method==="GET"){
     AnimalOutController.getAllAnimalOut(res)
 }
@@ -95,13 +111,11 @@ if (path==="/animaloutadopt" && req.method==="GET"){
 if (path==="/animaloutdelete" && req.method==="DELETE"){
     AnimalOutController.deleteAnimalOut(res,query.id)
 }
-if(path==="/animalinupdate" && req.method==="PUT"){
-    getData(req)
-    .then((data)=>{
-        AnimalInController.updateAnimal(res,data.id)
-    })    
-}
-//adoptant
+
+//***************************************************** */
+/*                  Adoptant                            */
+//***************************************************** */
+
 if(path==="/adoptget" && req.method==="GET"){
     AdoptantController.getAllAdoptants(res)
 }
@@ -112,6 +126,52 @@ if(path ==="/adoptantinsert" && req.method==="POST"){
             data.ContactMail,data.ContactPortable,data.Artichats,data.Note)
     })
 }
+if(path ==="/adoptantbyname" && req.method === "GET"){
+    AdoptantController.getAdoptantByName(res,query.Nom)
+}
+if(path ==="/adoptantbyartichat" && req.method ==="GET"){
+    AdoptantController.getAdoptantByArtichat(res,query.Artichats)
+}
+
+
+
+//***************************************************** */
+/*                  Famille d'accueil                   */
+//***************************************************** */
+if (path === "/familleaccueilall" && req.method === "GET"){
+    FamilleAccueilController.getAllFamilleAccueil(res)
+}
+if (path ==="/familleaccueilinsert" && req.method ==="POST"){
+    getData(req)
+    .then((data)=>{
+        FamilleAccueilController.insertFamilleAccueil(res,data.Nom
+            ,data.Adresse,data.Cp,data.Ville,
+            data.EquipementsFourni,data.Artichats,data.Notes)
+    })
+}
+if( path === "/familleaccueilbynom" && req.method === "GET"){
+    FamilleAccueilController.getfamilleAccueilbyNom(res,query.Nom)
+}
+if( path === "/familleaccueilbyartichats" && req.method === "GET"){
+    FamilleAccueilController.getFamilleAccueilbyArtichat(res,query.Artichats)
+}
+
+
+//***************************************************** */
+/*                  Equipements                         */
+//***************************************************** */
+
+
+
+//***************************************************** */
+/*                  Sponsors                            */
+//***************************************************** */
+
+
+
+//***************************************************** */
+/*                  Veterinaire                         */
+//***************************************************** */
 
 
 
