@@ -4,7 +4,19 @@ const db = require ("../models/db")
 const sponsorController = {
     getAllSponsors(){
      db.Sponsor.findAll()
-    },
+     .then((result)=>{
+         res.write(JSON.stringify(result.map(
+             elem => elem.toJSON()
+         )))
+         res.end()
+     })
+     .catch(()=>{
+         res.write(JSON.stringify({message:"erreur dans la recherche all"}))
+         res.end()
+     })
+        
+     },
+   
     insertSponsors(){
         db.Sponsor.create({
             Nom:Nom,
