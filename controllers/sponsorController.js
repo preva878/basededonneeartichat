@@ -43,12 +43,12 @@ const sponsorController = {
         })
     },
     deleteSponsor(res,id){
-        db.AnimalOut.destroy({
+        db.Sponsor.destroy({
             where:{
                 id:id
             },
         })
-        .then(()=>{
+        .then(() => {
             res.write(JSON.stringify({message:`sponsor ${Nom} effacer`}))
             res.end()
         })
