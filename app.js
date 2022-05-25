@@ -11,6 +11,7 @@ const AdoptantController = require ("./controllers/adoptantController")
 const EquipementController= require ("./controllers/equipementController")
 const FamilleAccueilController = require ("./controllers/familleAccueilController")
 const SponsorController = require ("./controllers/sponsorController")
+const VeterinaireController = require ("./controllers/veterinaireController")
 
 
 
@@ -190,11 +191,12 @@ if(path === "/equipemenall" && req.method === "GET"){
 if (path === "/sponsor" && req.method==="GET"){
     SponsorController.getAllSponsors(res)
 }
-if (path =="/sponsorinsert" && req.method === "POST"){
+if (path === "/sponsorinsert" && req.method === "POST"){
     getData(req)
     .then((data)=>{
-        SponsorController.insertSponsors(res,data.Nom,data.Materiel,data.DateEntree,data.Quantite,data.Types,
-            data.Adresse,data.Types,data.Cp,data.Ville)
+        SponsorController.insertSponsors(res,data.Nom,data.Materiel
+            ,data.DateEntree,data.Quantite,data.Types,
+            data.Adresse,data.Cp,data.Ville)
     })
 }
 if (path === "/sponsordelete" && req.method === "DELETE"){
@@ -212,6 +214,30 @@ if(path === "/sponsorbycp" && req.method === "GET"){
 /*                  Veterinaire                         */
 //***************************************************** */
 
+if(path=== "/veterinaires" && req.method ==="GET"){
+    VeterinaireController.getAllveterinaire(res)
+}
+if(path === "/veterinaireinsert" && req.method ==="POST"){
+    getData(req)
+    .then((data)=>{
+        VeterinaireController.insertVeterinaire(res,data.Nom,data.Adresse,
+            data.Ville,data.CP,data.DateIntervention,
+            data.Prix,data.TypeIntervention,Artichats,Notes)
+
+        })
+    }
+if(path === "/veterinairedelete" && req.method === "POST"){
+    VeterinaireController.deleteVeterinaire(res,query.id)
+}
+if (path === "/veterinairebyville" && req.method ==="GET"){
+    VeterinaireController.getVeterinairebyVille(res,query.Ville)
+}
+if(path === "/veterinairebyartichats" && req.method === "GET"){
+    VeterinaireController.getVeterinairebyArtichats(res,query.Artichats)
+}
+if(path ==="/veterinairebycp" && req.method === "GET"){
+    VeterinaireController.getVeterinairebyCP(res,query.CP)
+}
 
 
 

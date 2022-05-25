@@ -2,7 +2,7 @@
 const db = require ("../models/db")
 
 const sponsorController = {
-    getAllSponsors(){
+    getAllSponsors(res){
      db.Sponsor.findAll()
      .then((result)=>{
          res.write(JSON.stringify(result.map(
@@ -26,7 +26,7 @@ const sponsorController = {
             Types:Types,
             Adresse:Adresse,
             Cp:Cp,
-            Ville:Ville,
+            Ville:Ville
         })
         .then(()=>{
             res.write(JSON.stringify({message:`nouveau sponsor : ${Nom} inserer`}))
