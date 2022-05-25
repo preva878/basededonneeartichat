@@ -1,7 +1,7 @@
 const db = require ("../models/db")
 
 const veterinaireController = {
-    getAllveterinaire(){
+    getAllveterinaire(res){
         db.Veterinaire.findAll()
         .then((result)=>{
             res.write(JSON.stringify(result.map(
@@ -82,7 +82,18 @@ const veterinaireController = {
             res.write(JSON.stringify({message:`erreur dans la recherche par code postal ${CP}`}))
             res.end()
         })
-    }
+    },
+    getVeterinairebyintervention(res,TypeIntervention){
+        db.Veterinaire.findAll({where:{TypeIntervention:TypeIntervention}})
+        .then((result)=>{
+            res.write(JSON.stringify(result))
+            res.end()
+        })
+        .catch(()=>{
+            res.write(JSON.stringify({message:`erreur dans la recherche par intervention ${TypeIntervention}`}))
+            res.end()
+        })
+    },
 }
 
 module.exports = veterinaireController

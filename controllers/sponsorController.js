@@ -79,6 +79,17 @@ const sponsorController = {
             res.end()
         })
     },
+    getSponsorsByCp(res,Cp){
+        db.Sponsor.findAll({where:{Cp:Cp}})
+        .then((result)=> {
+            res.write(JSON.stringify(result))
+            res.end()
+        })
+        .catch(()=>{
+            res.write(JSON.stringify({message:`erreur dans la recherche par CP`}))
+            res.end()
+        })
+    },
 }
 
 module.exports = sponsorController

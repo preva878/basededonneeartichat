@@ -208,6 +208,9 @@ if(path === "/sponsorbyname" && req.method === "GET"){
 if(path === "/sponsorbycp" && req.method === "GET"){
     SponsorController.getSponsorByCp(res,query.Cp)
 }
+if(path === "/sponsorsbycp" && req.method === "GET"){
+    SponsorController.getSponsorsByCp(res,query.Cp)
+}
 
 
 //***************************************************** */
@@ -222,11 +225,11 @@ if(path === "/veterinaireinsert" && req.method ==="POST"){
     .then((data)=>{
         VeterinaireController.insertVeterinaire(res,data.Nom,data.Adresse,
             data.Ville,data.CP,data.DateIntervention,
-            data.Prix,data.TypeIntervention,Artichats,Notes)
+            data.Prix,data.TypeIntervention,data.Artichats,data.Notes)
 
         })
     }
-if(path === "/veterinairedelete" && req.method === "POST"){
+if(path === "/veterinairedelete" && req.method === "DELETE"){
     VeterinaireController.deleteVeterinaire(res,query.id)
 }
 if (path === "/veterinairebyville" && req.method ==="GET"){
@@ -237,6 +240,9 @@ if(path === "/veterinairebyartichats" && req.method === "GET"){
 }
 if(path ==="/veterinairebycp" && req.method === "GET"){
     VeterinaireController.getVeterinairebyCP(res,query.CP)
+}
+if(path ==="/veterinairebyintervention" && req.method === "GET"){
+    VeterinaireController.getVeterinairebyintervention(res,query.TypeIntervention)
 }
 
 
