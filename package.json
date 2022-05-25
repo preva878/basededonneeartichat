@@ -4,6 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -16,5 +18,8 @@
     "mysql2": "^2.3.3",
     "sequelize": "^6.19.0",
     "yargs": "^17.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
   }
 }

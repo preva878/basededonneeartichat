@@ -195,7 +195,7 @@ if (path === "/sponsorinsert" && req.method === "POST"){
     getData(req)
     .then((data)=>{
         SponsorController.insertSponsors(res,data.Nom,data.Materiel
-            ,data.DateEntree,data.Quantite,data.Types,
+            ,data.DateEntre,data.Quantite,data.Types,
             data.Adresse,data.Cp,data.Ville)
     })
 }

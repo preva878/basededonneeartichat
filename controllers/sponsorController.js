@@ -17,24 +17,28 @@ const sponsorController = {
         
      },
    
-    insertSponsors(res,Nom,Materiel,DateEntree,Quantite,Types,Adresse,Cp,Ville){
-        db.Sponsor.create({
-            Nom:Nom,
-            Materiel:Materiel,
-            DateEntree:DateEntree,
-            Quantite:Quantite,
-            Types:Types,
-            Adresse:Adresse,
-            Cp:Cp,
-            Ville:Ville
-        })
+    insertSponsors(res,Nom,Materiel,DateEntre,Quantite,Types,Adresse,Cp,Ville){
+        const data = {
+            Nom,
+            Materiel,
+            DateEntre,
+            Quantite,
+            Types,
+            Adresse,
+            Cp,
+            Ville
+        };
+        console.log(data);
+        
+        db.Sponsor.create(data)
         .then(()=>{
             res.write(JSON.stringify({message:`nouveau sponsor : ${Nom} inserer`}))
             res.end()
         })
         .catch
-        (()=>{
-            res.write(JSON.stringify({message:"erreur d'encodage"}))
+        ((err)=>{
+            console.log(err);
+            res.write(JSON.stringify({message:"erreur d'encodage du sponsor"}))
             res.end()
         })
     },
