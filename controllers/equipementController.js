@@ -1,4 +1,5 @@
-
+const multer = require('multer')
+const path = require ('path')
 const db = require ("../models/db")
 
 const equipementController = {
@@ -17,6 +18,7 @@ const equipementController = {
     },
     insertEquipement(res,Nom,Types,Quantite,DateEntree,DatePeremption,Etats){
         db.Equipement.create({
+            
             Nom:Nom,
             Types:Types,
             Quantite:Quantite,
@@ -85,7 +87,35 @@ const equipementController = {
                 res.end()
             })
         },
+
+      
     
 }
+  //multer essai
+  const storage = multer.diskStorage({
+    destination:(req,file,cb,)=>{
+        cb(null,'../Images')
+    },
+    filename:(req,file,cb) =>{
+        cb(null,Date.nom() + path.extname(file.originalname))
+    }
+})
+const upload = multer({
+    storage:storage,
+    limits: {fileSize:'10000000'},
+    fileFilter:(req,file,cb) => {
+        const fileTypes = /jpeg|jpg|png|gif/
+        const mimeType = fileTypes.test(file.mimetype)
+        const extname = fileTypes.test(path.extname(file.originalname))
+
+        if(mimeTpe && extname){
+            return cb(null,ture)
+
+            
+        }
+        cb('erreur de format')
+    }
+}).single('Images')
+
 
 module.exports = equipementController

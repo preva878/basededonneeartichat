@@ -27,7 +27,7 @@ const getData = (req) => {
         })
     })
 }
-db.sequelize.sync()
+db.sequelize.sync({force:true})
 .then(()=>{
 http.createServer((req, res) => {
     const currentUrl = url.parse(req.url, true)
@@ -170,6 +170,7 @@ if (path === "/equipementsinsert" && req.method ==="POST"){
     .then((data)=>{
         EquipementController.insertEquipement(res,data.Nom,data.Types,
             data.Quantite,data.DateEntree,data.DatePeremption,data.Etats)
+            
     })
 }
 if (path ==="/equipementdelete" && req.method === "DELETE"){
