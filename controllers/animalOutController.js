@@ -71,8 +71,8 @@ const animalOutController = {
         })
         
     },
-    getAnimalOutbyName(res,Nom){
-        db.AnimalOut.findOne({where:{Nom:Nom}})
+    getAnimalOutbyName(res,NomDefinitif){
+        db.AnimalOut.findOne({where:{NomDefinitif:NomDefinitif}})
         .then((result) => {
             res.write(JSON.stringify(result))
             res.end()
