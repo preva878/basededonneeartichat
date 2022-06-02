@@ -27,7 +27,7 @@ const getData = (req) => {
         })
     })
 }
-db.sequelize.sync({force:true})
+ db.sequelize.sync(/*{force:true}*/)
 .then(()=>{
 http.createServer((req, res) => {
     const currentUrl = url.parse(req.url, true)
@@ -36,17 +36,22 @@ http.createServer((req, res) => {
 
     console.log(path)
     console.log(query)
+
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, Origin, Authorization")
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS")
+
     res.writeHead(200,{
-            
-        'Access-Control-Allow-Origin': '*',
-
-        'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
-
         'Access-Control-Max-Age': 2592000, // 30 days
-
         "Content-Type": "application/json"
+    })
 
-})
+if (req.method ==="OPTIONS"){
+res.end()
+}
+    
+   
+
 
 //***************************************************** */
 /*                  AnimalIN                            */
@@ -161,6 +166,10 @@ if( path === "/familleaccueilbyartichats" && req.method === "GET"){
 //***************************************************** */
 /*                  Equipements                         */
 //***************************************************** */
+
+
+
+
 
 if (path === "/equipements" && req.method==="GET"){
     EquipementController.getAllEquipements(res)
