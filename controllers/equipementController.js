@@ -16,9 +16,10 @@ const equipementController = {
             res.end()
         })
     },
-    insertEquipement(res,Nom,Types,Quantite,DateEntree,DatePeremption,Etats){
+    insertEquipement(res,Image,Nom,Types,Quantite,DateEntree,DatePeremption,Etats){
         db.Equipement.create({
             
+            Image:Image,
             Nom:Nom,
             Types:Types,
             Quantite:Quantite,

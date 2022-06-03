@@ -177,7 +177,7 @@ if (path === "/equipements" && req.method==="GET"){
 if (path === "/equipementsinsert" && req.method ==="POST"){
     getData(req)
     .then((data)=>{
-        EquipementController.insertEquipement(res,data.Nom,data.Types,
+        EquipementController.insertEquipement(res,data.Image,data.Nom,data.Types,
             data.Quantite,data.DateEntree,data.DatePeremption,data.Etats)
             
     })
