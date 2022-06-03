@@ -12,21 +12,21 @@ const EquipementController= require ("./controllers/equipementController")
 const FamilleAccueilController = require ("./controllers/familleAccueilController")
 const SponsorController = require ("./controllers/sponsorController")
 const VeterinaireController = require ("./controllers/veterinaireController")
+const router = require('express').Router()
 
 
 
-
-const getData = (req) => {
-    return new Promise((resolve, reject) => {
-        let body = ""
-        req.on("data", (data) => {
-            body = body + data
-        })
-        req.on("end", () => {
-            resolve(JSON.parse(body))
-        })
-    })
-}
+ const getData = (req) => {
+     return new Promise((resolve, reject) => {
+         let body = ""
+         req.on("data", (data) => {
+             body = body + data
+         })
+         req.on("end", () => {
+             resolve(JSON.parse(body))
+         })
+     })
+ }
  db.sequelize.sync(/*{force:true}*/)
 .then(()=>{
 http.createServer((req, res) => {
