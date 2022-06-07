@@ -2,6 +2,8 @@
 const db = require ("./models/db")
 const http = require("http")
 const url = require("url")
+const express = require('express')
+
 
 
 const AnimalInController = require ("./controllers/animalInController")
@@ -12,7 +14,19 @@ const EquipementController= require ("./controllers/equipementController")
 const FamilleAccueilController = require ("./controllers/familleAccueilController")
 const SponsorController = require ("./controllers/sponsorController")
 const VeterinaireController = require ("./controllers/veterinaireController")
-const router = require('express').Router()
+
+
+const app = express()
+
+//middle
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+
+//routers
+
+
+//image
+app.use('/Images',express.static('./Images'))
 
 
 
@@ -171,7 +185,7 @@ if( path === "/familleaccueilbyartichats" && req.method === "GET"){
 
 
 
-if (path === "/equipements" && req.method==="GET"){
+if (path === "/equipement" && req.method==="GET"){
     EquipementController.getAllEquipements(res)
 }
 if (path === "/equipementsinsert" && req.method ==="POST"){

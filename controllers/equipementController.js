@@ -1,5 +1,6 @@
 const multer = require('multer')
 const path = require ('path')
+const { Equipement } = require('../models/db')
 const db = require ("../models/db")
 
 const equipementController = {
@@ -92,31 +93,89 @@ const equipementController = {
       
     
 }
-  //multer essai
-  const storage = multer.diskStorage({
-    destination:(req,file,cb,)=>{
-        cb(null,'../Images')
-    },
-    filename:(req,file,cb) =>{
-        cb(null,Date.nom() + path.extname(file.originalname))
-    }
-})
-const upload = multer({
-    storage:storage,
-    limits: {fileSize:'10000000'},
-    fileFilter:(req,file,cb) => {
-        const fileTypes = /jpeg|jpg|png|gif/
-        const mimeType = fileTypes.test(file.mimetype)
-        const extname = fileTypes.test(path.extname(file.originalname))
+// //essai express pour multer
+// const Equipements = db.equip
 
-        if(mimeTpe && extname){
-            return cb(null,ture)
+// //creation equipement
+// const addEquip = async (req,res) => {
+//     let info = {
+//         Image : req.file.path,
+//         Nom : req.body.Nom,
+//         Types : req.body.Types,
+//         Quantite: req.body.Quantite,
+//         DateEntree : req.body.DateEntree,
+//         DatePeremption : req.body.DatePeremption,
+//         Etats : req.body.Etats,
+//     }
+//     const equip = await Equipements.create(info)
+//     res.status(200).send(equip)
+//     console.log(equip)
+// }
+// //creation getall
+// const getAllEquip = async (req,res) => {
+//     let equip = Equipements.findAll({})
+//     res.status(200).sent(equip)
+// }
+// //essai get one by id
+// const getOneEquip = async (req,res) => {
+//     let id = req.params.id
+//     let equip = await Equipements.findOne({where:
+//     {id:id}})
+//     res.status(200).send(equip)
+// }
+// //essai update
+// const updateEquip = async (req,res) => {
+//     let id = req.params.id
+//     const equip = await Equipements.update(req.body, {where:
+//         {id:id}})
+//         res.status(200).send(equip)
+
+// }
+// //essai delete by id
+// const deleteEquip = async (req,res) => {
+//     let id = req.params.id
+//     await Equipements.destroy({where:{id:id}})
+//     res.status(200).send(`equipement ${Equipements}  delete`)
+// }
+// //recup les equip publier?
+// const getPublishEquip = async (req,res) => {
+//     const equip = await Equipements.findAll({where:
+//         {published: true}})
+//         res.status(200).send(equip)
+// }
+//   //multer essai
+//   const storage = multer.diskStorage({
+//     destination:(req,file,cb,)=>{
+//         cb(null,'../Images')
+//     },
+//     filename:(req,file,cb) =>{
+//         cb(null,Date.nom() + path.extname(file.originalname))
+//     }
+// })
+// const upload = multer({
+//     storage:storage,
+//     limits: {fileSize:'10000000'},
+//     fileFilter:(req,file,cb) => {
+//         const fileTypes = /jpeg|jpg|png|gif/
+//         const mimeType = fileTypes.test(file.mimetype)
+//         const extname = fileTypes.test(path.extname(file.originalname))
+
+//         if(mimeType && extname){
+//             return cb(null,ture)
 
             
-        }
-        cb('erreur de format')
-    }
-}).single('Images')
+//         }
+//         cb('erreur de format')
+//     }
+// }).single('Image')
 
 
-module.exports = equipementController
+module.exports = {equipementController,
+        // addEquip,
+        // getAllEquip,
+        // getOneEquip,
+        // updateEquip,
+        // deleteEquip,
+        // getPublishEquip,
+        // upload
+}

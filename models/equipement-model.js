@@ -3,7 +3,8 @@
 const EquipementsModel = (sequelize,DataTypes) => {
     const Equipements= sequelize.define("Equipements",{
        Image:{
-           type:DataTypes.STRING
+           type:DataTypes.STRING,
+           allowNull:true
        },
         
         Nom:{

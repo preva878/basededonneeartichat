@@ -8,6 +8,7 @@ const familleAccueilModel = require ("./familleAccueil-model")
 const sponsorModel = require("./sponsor-model")
 const usersModel = require("./users-model")
 const veterinaireModel = require ("./veterinaire-model")
+const EquipementsModel = require("./equipement-model")
 
 
 
@@ -27,7 +28,9 @@ const db = {
     Sponsor: sponsorModel(sequelize,DataTypes),
     User: usersModel (sequelize,DataTypes),
     Veterinaire: veterinaireModel(sequelize,DataTypes),
+    Equipements: EquipementsModel(sequelize,DataTypes)
 }
+//db.Equipements = require('./equipement-model')(sequelize,DataTypes)
 
 
 //relations many to many famille accueil, veterianire, animalin et animalout
