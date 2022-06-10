@@ -3,6 +3,7 @@ const db = require ("./models/db")
 const http = require("http")
 const url = require("url")
 const express = require('express')
+const cors = require ('cors')
 
 
 
@@ -14,6 +15,7 @@ const EquipementController= require ("./controllers/equipementController")
 const FamilleAccueilController = require ("./controllers/familleAccueilController")
 const SponsorController = require ("./controllers/sponsorController")
 const VeterinaireController = require ("./controllers/veterinaireController")
+const { Router } = require("express")
 
 
 const app = express()
@@ -23,8 +25,8 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 //routers
-
-
+const router = require('./routes/productRouter')
+app.use('',router)
 //image
 app.use('/Images',express.static('./Images'))
 
@@ -78,7 +80,7 @@ if(path==="/animalin" && req.method==="GET"){
 if(path==="/animalinpost" && req.method==="POST"){
     getData(req)
     .then((data) => {
-        AnimalInController.insertAnimalIn(res,data.Nom,data.Sexe,data.Age,
+        AnimalInController.insertAnimalIn(res,data.Nom,data.currentSexe,data.Age,
             data.Poids,data.DateEntree,data.Etat,data.Traitement,
             data.FamilleAccueil,data.Note)
     })

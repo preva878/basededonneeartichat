@@ -18,10 +18,10 @@ const AnimalInController = {
         })
     },
 
-    insertAnimalIn(res,Nom,Sexe,Age,Poids,DateEntree,Etat,Traitement,FamilleAccueil,Note){
+    insertAnimalIn(res,Nom,currentSexe,Age,Poids,DateEntree,Etat,Traitement,FamilleAccueil,Note){
         db.AnimalIn.create({
             Nom:Nom,
-            Sexe:Sexe,
+            currentSexe:currentSexe,
             Age:Age,
             Poids:Poids,
             DateEntree:DateEntree,
@@ -41,8 +41,8 @@ const AnimalInController = {
         })
         
     },
-    getAnimalInbyOne(res,Sexe){
-        db.AnimalIn.findAll({where:{Sexe:Sexe}})
+    getAnimalInbyOne(res,currentSexe){
+        db.AnimalIn.findAll({where:{currentSexe:currentSexe}})
         .then((result) => {
             res.write(JSON.stringify(result))
             res.end()

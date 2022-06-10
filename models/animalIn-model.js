@@ -7,7 +7,7 @@ const animalInModel = (Sequelize,DataTypes) => {
             type:DataTypes.STRING,
             allowNull:false
         },
-        Sexe:{
+        currentSexe:{
             type:DataTypes.STRING,
             allowNull:true
         },

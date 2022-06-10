@@ -9,6 +9,7 @@ const sponsorModel = require("./sponsor-model")
 const usersModel = require("./users-model")
 const veterinaireModel = require ("./veterinaire-model")
 const EquipementsModel = require("./equipement-model")
+const PorteeModel = require("./productModel")
 
 
 
@@ -28,8 +29,10 @@ const db = {
     Sponsor: sponsorModel(sequelize,DataTypes),
     User: usersModel (sequelize,DataTypes),
     Veterinaire: veterinaireModel(sequelize,DataTypes),
-    Equipements: EquipementsModel(sequelize,DataTypes)
+    Equipements: EquipementsModel(sequelize,DataTypes),
+    Portees: PorteeModel(sequelize,DataTypes)
 }
+
 //db.Equipements = require('./equipement-model')(sequelize,DataTypes)
 
 
@@ -64,5 +67,7 @@ db.Adoptant.hasMany(db.AnimalOut);
 
 db.User.hasOne(db.FamilleAccueil)
 db.FamilleAccueil.belongsTo(db.User)
+
+
 
 module.exports = db
