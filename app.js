@@ -23,10 +23,14 @@ const app = express()
 //middle
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+app.all('',(req,res) =>{
+    console.log('message')
+    console.log(req.body)
+})
 
 //routers
 const router = require('./routes/productRouter')
-app.use('',router)
+app.use('/',router)
 //image
 app.use('/Images',express.static('./Images'))
 
